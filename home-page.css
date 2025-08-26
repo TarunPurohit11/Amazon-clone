@@ -1,0 +1,226 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: box;  
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+.limit-to-2-lines {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+body{
+    font-family: Roboto, Arial;
+    color: rgb(33, 33, 33);
+}
+.main-container {
+    display: grid;
+    grid-template-rows: auto 1fr; /* top bar + content */
+}
+main{
+    margin-top:60px;
+}
+header {
+    background-color: rgb(19, 25, 33);
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    height: 60px;
+    top:0;
+    left: 0;
+    right: 0;
+}
+
+.left-section{
+    width: 180px;
+}
+
+.products-grid-container {
+    max-width: 8000px;
+    display: grid;  
+    grid-template-columns: repeat(5, 1fr);
+    align-items: stretch; /* make cards same height */
+}
+
+.products-container {
+    padding-left:25px;
+    padding-right:25px;
+    padding-bottom:25px;
+    padding-top:40px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-right: 1px solid rgb(231, 231, 231);
+    border-bottom: 1px solid rgb(231, 231, 231);
+}
+
+.image-container {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.added{
+    display: flex;
+    color: rgb(6, 125, 98);
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.ok-icon{
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+.amazon-logo-white{
+    display: inline-block;
+    padding: 6px;
+    max-width: 800px;
+    width: 100px;
+}
+.logo-image{
+    width: 100px;
+    margin-top: 5px;
+}
+.search-box{
+    max-width: 850px;
+    flex:1;
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+.search-bar{
+    flex:1;
+
+    font-size: 16px;
+    height: 40px;
+    padding-left: 15px;
+    border: none;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    right: 0;
+}
+.search-button {
+    height: 40px;
+    width: 45px;
+    background-color: rgb(254, 189, 105);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border: none;
+    flex-shrink: 0;
+}
+.search-button-icon{
+    height: 22px;
+    margin-top: 3px;
+}
+.right-section{
+    width: 180px;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: end;
+    
+}
+.return-order{
+    padding: 6px;
+    display: inline-block; 
+}
+.cart{
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 6px;
+}
+.cart-count{
+    color: rgb(240, 136, 4);
+    font-weight: 600;
+    position: absolute;
+    top:5px;
+    left: 21px;
+    width: 26px;
+    text-align: center;
+}
+.cart-text{
+    margin-top: 12px;
+    font-size:15px;
+    font-weight: 700;
+}
+.cart-icon{
+    width: 50px;
+}
+
+.return-text{
+    display: block;
+    font-size: 13px;
+}
+
+.orders-text{
+    font-weight: 700;
+    font-size: 15px;
+    display: block;
+}
+.product-name{
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.reviews-image{
+    width: 100px;
+    margin-right: 6px;
+}
+.reviews{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.review-ratings-count{
+    margin-top: 3px;
+}
+.price{
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.quantity{
+    margin-bottom: 17px;
+}
+.drop-down{
+    background-color: rgb(240, 240, 240);
+    color: rgb(33,33,33);
+    font-size: 15px;
+    border: 1px solid rgb(213, 217, 217);
+    padding: 3px 5px;
+    height: 25px;
+    width: 50px;
+    border-radius: 8px;
+}
+.add-to-cart-button{
+    padding: 8px;
+    color: rgb(33, 33, 33);
+    background-color: rgb(255, 216, 20);
+    border: 1px solid rgb(252, 210, 0);
+    height: 35px;
+    border-radius: 50px;
+}
