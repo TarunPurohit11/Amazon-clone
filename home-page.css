@@ -22,9 +22,6 @@ body{
     display: grid;
     grid-template-rows: auto 1fr; /* top bar + content */
 }
-main{
-    margin-top:60px;
-}
 header {
     background-color: rgb(19, 25, 33);
     color: white;
@@ -45,6 +42,7 @@ header {
 }
 
 .products-grid-container {
+    margin-top:60px;
     max-width: 8000px;
     display: grid;  
     grid-template-columns: repeat(5, 1fr);
@@ -223,4 +221,11 @@ header {
     border: 1px solid rgb(252, 210, 0);
     height: 35px;
     border-radius: 50px;
+}
+.hidden{
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+.visible{
+    opacity: 1;
 }
