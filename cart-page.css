@@ -9,15 +9,7 @@ html,body{
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
-main{
-    max-width: 1100px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-top: 140px;
-    margin-bottom: 100px;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 header{
     height: 60px;
     padding-left: 30px;
@@ -67,27 +59,54 @@ header{
     overflow-clip-margin: content-box;
     overflow: clip;
 }
-.product-image{
-   width: 10%;
-    height: 10%; 
-}
-.review-your-orders{
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 18px;
-}
-.order{
-    border:1px rgb(148, 66, 66);
-    display: flex;
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 300px;  
+    column-gap: 10px;  
+
+    margin: 150px auto;
+    width: 80%;
+    height: 100%;    
 }
 .order-list{
-    display: flex;
-    flex: 1;
+    background-color: antiquewhite;
+    width: 100%;
+    box-sizing: border-box;
 }
-.order-summary{
-    display: flex;
+.order-checkout{
+    background-color: burlywood;
 }
-.grid{
+.order{
+    background-color:beige;
+    padding: 20px;
+    width: 100%;
+    height: 300px;
+    border : 5px solid red;
+    box-sizing: border-box;
+}
+.order-details-grid{
     display: grid;
-    grid-template-columns: 1fr 350px;
+    grid-template-columns: 100px 1fr 1fr;
+    background-color: bisque;
 }
+.date{
+    background-color: brown;
+}
+.item-image{
+    background-color: blanchedalmond;
+    max-width: 100%;
+    max-height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cart-tem-details{
+    background-color: azure;
+    width: 70px;
+    height: 122px;
+}
+.delivery-options{
+    background-color: blue;
+    width: 70px;
+    height: 122px;
+}
+

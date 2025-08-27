@@ -93,6 +93,9 @@ header {
     padding: 6px;
     max-width: 800px;
     width: 100px;
+    border: 1px solid white;
+    border-radius: 2px;
+
 }
 .logo-image{
     width: 100px;
@@ -140,14 +143,22 @@ header {
     
 }
 .return-order{
+    color: white;
     padding: 6px;
     display: inline-block; 
+    border-radius: 2px;
+    border: 1px solid white;
+    text-decoration: none;
 }
 .cart{
+    color: white;
     display: flex;
     align-items: center;
     position: relative;
     padding: 6px;
+    border-radius: 2px;
+    border: 1px solid white;
+    text-decoration: none;
 }
 .cart-count{
     color: rgb(240, 136, 4);
@@ -224,7 +235,7 @@ header {
 }
 .hidden{
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 0.3s ease;
 }
 .visible{
     opacity: 1;

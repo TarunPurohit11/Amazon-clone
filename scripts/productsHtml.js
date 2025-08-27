@@ -1,12 +1,11 @@
 let finalHtml = ``;
-console.log(products);
 for(i = 0; i < products.length; i++){
     product = products[i];
     const html = `<div class = "products-container"><div class = "image-container">
                         <img class = "product-image" src = ${product.image}>
                     </div>
                     <div class = "product-name limit-to-2-lines">
-                       ${product.name}
+                       ${product.productName}
                     </div>
                     <div class = "reviews">
                         <img class = "reviews-image"src = "images/reviews/rating-${product.review}.png">
@@ -16,32 +15,68 @@ for(i = 0; i < products.length; i++){
                     <div class = "quantity">
                         <select class = "drop-down">
                             <option value = "1" selected>1</option>
-                            <option value = "1">2</option>
-                            <option value = "1">3</option>
-                            <option value = "1">4</option>
-                            <option value = "1">5</option>
-                            <option value = "1">6</option>
-                            <option value = "1">7</option>
-                            <option value = "1">8</option>
-                            <option value = "1">9</option>
-                            <option value = "1">10</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </select>
                     </div>
                     <div class = "added hidden">
                         <img class="ok-icon" src = "images/reviews/checkmark.png"> Added
                     </div >
-                    <button class="add-to-cart-button">Add to Card</button></div>`
+                    <button class="add-to-cart-button" data-id=${product.id}>Add to Card</button></div>`
 
     finalHtml += html;
 }
 
 document.querySelector('.products-grid-container').innerHTML = finalHtml;
-const added = document.querySelector('.added');    
-document.querySelector('.add-to-cart-button').addEventListener('click',()=>{
-    cartCount++;
-    added.classList.add("visible");
-    setTimeout(()=>{
-        added.classList.remove("visible");
-    },2000);
+
+const addButtons = document.querySelectorAll('.add-to-cart-button');
+
+
+updateCartCount();
+addButtons.forEach((btn,index) => {
+    btn.addEventListener('click',()=>{
+        const prodcutContainer = btn.closest('.products-container');
+
+        const productQuantity = parseInt(prodcutContainer.querySelector('.drop-down').value);
+
+        const added = prodcutContainer.querySelector('.added');
+
+        added.classList.add("visible");
+        const productId = parseInt(btn.dataset.id);
+
+        addToCart(productId,productQuantity);
+        setTimeout(()=>{
+            added.classList.remove("visible");
+        },2000);
+    });
 });
-document.querySelector('cart-count').innerHTML = `${cartCount}`;
+
+function addToCart(productId,productQuantity){
+    const product = products.find(p => p.id === productId);
+    const cartItem= cart.find(c => c.id === productId);
+
+    if(cartItem){
+        cartItem.quantity += productQuantity;
+    }
+    else{
+        cart.push({
+            id : product.id,
+            productName : product.productName,
+            image : product.image,
+            price : product.price,
+            quantity : productQuantity
+        })
+    }
+    updateCartCount();
+}
+function updateCartCount(){
+    let cartCount = cart.reduce( (sum,item) => sum + item.quantity, 0 );
+    document.querySelector('.cart-count').innerHTML = cartCount;
+} 
