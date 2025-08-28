@@ -4,12 +4,14 @@ let cart = [{
     productName: 'Black and Gray Athletic Cotton Socks 6 Pairs',
     price: 1090,
     quantity: 1,
+    shipping: 0
 },{
     id:2,
     image:'images/products/intermediate-composite-basketball.jpg',
     productName: 'Intermediate Size Basketball',
     price: 2095,
-    quantity: 1
+    quantity: 1,
+    shipping: 0
 }];
 
 const products = [{
