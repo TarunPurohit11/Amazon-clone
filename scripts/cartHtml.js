@@ -1,18 +1,42 @@
 let finalCartHtml = ``;
-for (let i = 0; i < cart.length; i++) {
+//date and days
+const today = new Date();
+const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const months = [
+        "January","February","March","April","May","June",
+        "July","August","September","October","November","December"
+      ];
+function formatDate(date){
+  return date.toLocaleDateString("en-US",{
+    weekday: "long",
+    month: "long",
+    day: "numeric"
+  })
+}
+const future1  = new Date();
+future1.setDate(today.getDate()+11);
+
+const future2  = new Date();
+future2.setDate(today.getDate()+5);
+
+const future3  = new Date();
+future3.setDate(today.getDate()+3);
+
+cart.forEach(cartItem => {
+
   const html = `
     <div class="order">
-      <div class="date">Date:</div>
+      <div class="date">Date: ${formatDate(today)}</div>
       <div class="order-details-grid">
-        <img class="item-image" src="${cart[i].image}">
+        <img class="item-image" src="${cartItem.image}">
         <div class="cart-item-details">
-          <div class="product-name">${cart[i].productName}</div>
-          <div class="total-product-cost">$${(cart[i].price / 100).toFixed(2)}</div>
+          <div class="product-name">${cartItem.name}</div>
+          <div class="total-product-cost">$${(cartItem.priceCents / 100).toFixed(2)}</div>
           <div class="order-options">
             <div>Quantity</div>
             <select class="quantity-selection">
               ${Array.from({ length: 10 }, (_, idx) => 
-                `<option value="${idx + 1}" ${cart[i].quantity === idx + 1 ? 'selected' : ''}>${idx + 1}</option>`
+                `<option value="${idx + 1}" ${cartItem.quantity === idx + 1 ? 'selected' : ''}>${idx + 1}</option>`
               ).join('')}
             </select>
             <div><a href="">Save</a></div>
@@ -22,25 +46,25 @@ for (let i = 0; i < cart.length; i++) {
 
         <div class="delivery-options">
           <div class="delivery-option-text">Choose a delivery option:</div> 
-          <form data-id="${cart[i].id}">
+          <form data-id="${cartItem.id}">
             <label class="selection">
-              <input type="radio" class = "tick-box " name="select-options-${cart[i].id}" value="0" ${cart[i].shipping === 0 ? 'checked' : ''}>
+              <input type="radio" class = "tick-box " name="select-options-${cartItem.id}" value="0" ${cartItem.shipping === 0 ? 'checked' : ''}>
               <div class="delivery-option">
-                <div class="delivery-dates">Tuesday, September 2</div>
+                <div class="delivery-dates">${formatDate(future1)}</div>
                 <div class="delivery-charges">$0 - Free Shipping</div>
               </div>
             </label>
             <label class="selection">
-              <input type="radio" class = "tick-box " name="select-options-${cart[i].id}" value="499" ${cart[i].shipping === 499 ? 'checked' : ''}>
+              <input type="radio" class = "tick-box " name="select-options-${cartItem.id}" value="499" ${cartItem.shipping === 499 ? 'checked' : ''}>
               <div class="delivery-option">
-                <div class="delivery-dates">Wednesday, September 3</div>
+                <div class="delivery-dates">${formatDate(future2)}</div>
                 <div class="delivery-charges">$4.99 - Shipping</div>
               </div>
             </label>
             <label class="selection">
-              <input type="radio" class = "tick-box " name="select-options-${cart[i].id}" value="999" ${cart[i].shipping === 999 ? 'checked' : ''}>
+              <input type="radio" class = "tick-box " name="select-options-${cartItem.id}" value="999" ${cartItem.shipping === 999 ? 'checked' : ''}>
               <div class="delivery-option">
-                <div class="delivery-dates">Friday, August 29</div>
+                <div class="delivery-dates">${formatDate(future3)}</div>
                 <div class="delivery-charges">$9.99 - Shipping</div>
               </div>
             </label>
@@ -49,14 +73,16 @@ for (let i = 0; i < cart.length; i++) {
       </div>
     </div>`;
   finalCartHtml += html;
-}
+}) 
+
+
 
 // 🔹 Put HTML first
 document.querySelector('.order-list').innerHTML = finalCartHtml;
 
 // 🔹 Then add event listeners
 document.querySelectorAll("form[data-id]").forEach(form => {
-  const productId = parseInt(form.dataset.id);
+  const productId = (form.dataset.id);
   
   form.querySelectorAll("input[type='radio']").forEach(radio => {
     radio.addEventListener("change", () => {
@@ -75,7 +101,7 @@ function updateSummary() {
   let totalItemCost = 0;
   let totalShipping = 0;
   cart.forEach(item => {
-    totalItemCost += item.price * item.quantity;
+    totalItemCost += item.priceCents * item.quantity;
     totalShipping += item.shipping;
   });
 
@@ -106,6 +132,5 @@ function updateSummary() {
       <button class="order-button">Place your order</button>
     </div>`;
 }
-
 // First update call
 updateSummary();
