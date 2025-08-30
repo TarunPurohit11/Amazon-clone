@@ -1,3 +1,5 @@
+import{cart} from '../data/cart.js';
+
 let finalCartHtml = ``;
 //date and days
 const today = new Date();

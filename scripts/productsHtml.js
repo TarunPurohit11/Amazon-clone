@@ -1,3 +1,6 @@
+import {cart, addToCart} from '../data/cart.js';
+import { products } from '../data/products.js';
+
 let finalHtml = ``;
 products.forEach(product => {
     console.log(product.id);
@@ -53,32 +56,15 @@ addButtons.forEach((btn,index) => {
         console.log(productId);
         console.log(productQuantity);
         addToCart(productId,productQuantity);
+        
         setTimeout(()=>{
             added.classList.remove("visible");
         },2000);
+        updateCartCount();
     });
 });
 
-function addToCart(productId,productQuantity){
-    const product = products.find(p => p.id === productId);
-    const cartItem= cart.find(c => c.id === productId);
 
-    if(cartItem){
-        cartItem.quantity += productQuantity;
-    }
-    else{
-        cart.push({
-            id : product.id,
-            name : product.name,
-            image : product.image,
-            priceCents : product.priceCents,
-            quantity : productQuantity,
-            shipping : 0
-        })
-    }
-    console.log(cart)
-    updateCartCount();
-}
 function updateCartCount(){
     let cartCount = cart.reduce( (sum,item) => sum + item.quantity, 0 );
     document.querySelector('.cart-count').innerHTML = cartCount;
