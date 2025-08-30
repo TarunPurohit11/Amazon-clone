@@ -1,4 +1,4 @@
-import{cart, removeFromCart, updateCartCount} from '../data/cart.js';
+import{cart, removeFromCart, updateCartCount, setCartItemQuantity} from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
@@ -164,9 +164,15 @@ document.querySelectorAll('.js-update-quantity-link').forEach(link =>{
 document.querySelectorAll('.js-save-quantity-link').forEach(link =>{
   link.addEventListener('click',()=>{
     const productId = link.dataset.productId;
+    const quantityValue = parseInt(document.querySelector(`.js-quantity-bar-${productId}`).value);
+    setCartItemQuantity(productId,quantityValue);
+    document.querySelector('.js-middle-section').innerHTML = `Checkout(${updateCartCount()} items)`;
+    document.querySelector(`.js-cart-quantity-${productId}`).innerHTML= quantityValue;
     document.querySelector(`.js-save-quantity-link-${productId}`).classList.add('invisible');
     document.querySelector(`.js-quantity-bar-${productId}`).classList.add('invisible');
     document.querySelector(`.js-update-quantity-link-${productId}`).classList.remove('invisible');
     document.querySelector(`.js-cart-quantity-${productId}`).classList.remove('invisible');
   });
 });
+
+

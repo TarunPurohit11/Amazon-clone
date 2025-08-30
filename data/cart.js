@@ -53,3 +53,9 @@ export function updateCartCount(){
     const cartCount = cart.reduce( (sum,item) => sum + item.quantity, 0 );
     return cartCount;
 } 
+
+export function setCartItemQuantity(productId,quantityValue){
+  const cartItem = cart.find(c => c.productId === productId);
+  cartItem.quantity = quantityValue;
+  saveToStorage();
+}
