@@ -185,3 +185,12 @@ header{
     border: 1px solid rgb(252, 210, 0);
     width: 100%;
 }
+.invisible{
+    display: none;
+}
+
+.quantity-bar{
+    width: 50px;
+    height: 20px;
+    
+}

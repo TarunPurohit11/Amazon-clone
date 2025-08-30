@@ -1,4 +1,4 @@
-import {cart, addToCart} from '../data/cart.js';
+import {updateCartCount, addToCart} from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
@@ -41,8 +41,6 @@ document.querySelector('.products-grid-container').innerHTML = finalHtml;
 
 const addButtons = document.querySelectorAll('.add-to-cart-button');
 
-
-updateCartCount();
 addButtons.forEach((btn,index) => {
     btn.addEventListener('click',()=>{
         const prodcutContainer = btn.closest('.products-container');
@@ -61,12 +59,7 @@ addButtons.forEach((btn,index) => {
         setTimeout(()=>{
             added.classList.remove("visible");
         },2000);
-        updateCartCount();
+        document.querySelector('.cart-count').innerHTML = updateCartCount();
     });
 });
 
-
-function updateCartCount(){
-    let cartCount = cart.reduce( (sum,item) => sum + item.quantity, 0 );
-    document.querySelector('.cart-count').innerHTML = cartCount;
-} 

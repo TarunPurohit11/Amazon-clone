@@ -48,3 +48,8 @@ export function removeFromCart(productId){
   cart = newCart;
   saveToStorage();
 }
+
+export function updateCartCount(){
+    const cartCount = cart.reduce( (sum,item) => sum + item.quantity, 0 );
+    return cartCount;
+} 
