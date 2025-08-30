@@ -135,14 +135,18 @@ header{
     margin-bottom: 10px;
 }
 .delivery-option{
+    display: flex;
     margin-bottom: 10px;
 }
-.delivery-dates{
+.delivery-option-input{
+    margin-right : 5px;
+}
+.delivery-option-date{
     color: rgb(0, 118, 0);
     font-weight: 500;
     margin-bottom: 3px;
 }
-.delivery-charges{
+.delivery-option-price{
         color: rgb(120, 120, 120);
     font-size: 15px;
 }
@@ -150,9 +154,6 @@ header{
     display: grid;
     grid-template-columns: 24px 1fr;
     margin-bottom: 12px;
-}
-.tick-box{
-    margin-right: 7px;
 }
 .payment-summary {
     display: grid;
@@ -192,5 +193,5 @@ header{
 .quantity-bar{
     width: 50px;
     height: 20px;
-    
+
 }

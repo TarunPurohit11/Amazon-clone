@@ -39,6 +39,11 @@ products.forEach(product => {
 
 document.querySelector('.products-grid-container').innerHTML = finalHtml;
 
+
+if(updateCartCount()){
+    document.querySelector('.cart-count').innerHTML = updateCartCount();
+}
+
 const addButtons = document.querySelectorAll('.add-to-cart-button');
 
 addButtons.forEach((btn,index) => {
@@ -51,9 +56,6 @@ addButtons.forEach((btn,index) => {
 
         added.classList.add("visible");
         const productId = (btn.dataset.id);
-        console.log(productId);
-        console.log(productQuantity);
-        console.log(productId + " " + productQuantity);
         addToCart(productId,productQuantity);
         
         setTimeout(()=>{
