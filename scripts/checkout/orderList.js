@@ -1,7 +1,7 @@
 import{cart, removeFromCart, updateCartCount, setCartItemQuantity, updateDeliveryOption} from '../../data/cart.js';
-import { products } from '../../data/products.js';
+import { products, getProduct } from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
-import{deliveryOptions} from '../../data/deliveryOptions.js';
+import{deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 import dayjs from ' https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 export function renderOrderList(){
@@ -10,9 +10,9 @@ export function renderOrderList(){
 
     cart.forEach(cartItem => {
       const productId = cartItem.productId;
-      const matchingProduct = products.find(p => p.id === productId);
+      const matchingProduct = getProduct(productId);
       const deliveryOptionId = cartItem.deliveryOptionId;
-      const deliveryOption = deliveryOptions.find(d => d.id === deliveryOptionId);
+      const deliveryOption = getDeliveryOption(deliveryOptionId);
 
       const today = dayjs();
         const deliveryDate = today.add(deliveryOption.deliveryDays,'days');
@@ -88,47 +88,9 @@ export function renderOrderList(){
                 const {productId,deliveryOptionId} = element.dataset;
                 updateDeliveryOption(productId,deliveryOptionId);
                 renderOrderList();
-              })
-          })
+              });
+          });
 
-    // 🔹 Summary function
-    function updateSummary() {
-      let totalItemCost = 0;
-      let totalShipping = 0;
-      cart.forEach(item => {
-        totalItemCost += item.priceCents * item.quantity;
-        totalShipping += item.shipping;
-      });
-
-      document.querySelector('.checkout-summary-container').innerHTML = `
-        <div class="order-checkout">
-          <div class="order-summary-text">Order Summary</div>
-          <div class="payment-summary">
-            <div class="item-text">Items(${cart.length}):</div>
-            <div class="items-cost">$${(totalItemCost / 100).toFixed(2)}</div>
-          </div>
-          <div class="payment-summary">
-            <div class="shipping-text">Shipping & Handling:</div>
-            <div class="shipping-cost">$${(totalShipping / 100).toFixed(2)}</div>
-          </div>
-          <div class="payment-summary">
-            <div class="before-tax-text">Total before tax:</div>
-            <div class="before-tax-cost">$${((totalItemCost + totalShipping) / 100).toFixed(2)}</div>
-          </div>
-          <div class="payment-summary">
-            <div class="after-tax-text">Estimated tax (10%):</div>
-            <div class="after-tax-cost">$${(((totalItemCost + totalShipping) * 0.1) / 100).toFixed(2)}</div>
-          </div>
-          <div class="divider"></div>
-          <div class="payment-summary order-summary-total">
-            <div class="order-total-text">Order total:</div>
-            <div class="order-total-cost">$${(((totalItemCost + totalShipping) * 1.1) / 100).toFixed(2)}</div>
-          </div>
-          <button class="order-button">Place your order</button>
-        </div>`;
-    }
-    // First update call
-    updateSummary();
     document.querySelectorAll('.js-delete-quantity-link')
             .forEach(link => {
                 link.addEventListener('click',()=>{
