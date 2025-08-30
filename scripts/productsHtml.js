@@ -55,6 +55,7 @@ addButtons.forEach((btn,index) => {
         const productId = (btn.dataset.id);
         console.log(productId);
         console.log(productQuantity);
+        console.log(productId + " " + productQuantity);
         addToCart(productId,productQuantity);
         
         setTimeout(()=>{

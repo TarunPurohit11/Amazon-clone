@@ -38,12 +38,8 @@ cart.forEach(cartItem => {
           <div class="product-name">${matchingProduct.name}</div>
           <div class="total-product-cost">$${formatCurrency(matchingProduct.priceCents)}</div>
           <div class="order-options">
-            <div>Quantity</div>
-            <select class="quantity-selection">
-              ${Array.from({ length: 10 }, (_, idx) => 
-                `<option value="${idx + 1}" ${cartItem.quantity === idx + 1 ? 'selected' : ''}>${idx + 1}</option>`
-              ).join('')}
-            </select>
+            <div>Quantity: </div>
+            <span>${cartItem.quantity}</span>
             <div><a href="">Save</a></div>
             <div><span class = "js-delete-quantity-link" data-product-id="${cartItem.productId}">Delete</span></div>
           </div>
