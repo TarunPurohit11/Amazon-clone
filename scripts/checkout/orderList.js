@@ -3,6 +3,7 @@ import { products, getProduct } from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import{deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 import dayjs from ' https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
+import { renderCheckoutSummary } from './checkoutSummary.js';
 
 export function renderOrderList(){
     let finalCartHtml = ``;
@@ -88,6 +89,7 @@ export function renderOrderList(){
                 const {productId,deliveryOptionId} = element.dataset;
                 updateDeliveryOption(productId,deliveryOptionId);
                 renderOrderList();
+                renderCheckoutSummary();
               });
           });
 
@@ -98,6 +100,7 @@ export function renderOrderList(){
                   removeFromCart(productId);
                   const orderContainer = document.querySelector(`.js-order-${productId}`);
                   orderContainer.remove();
+                  renderCheckoutSummary();
                   document.querySelector('.js-middle-section').innerHTML = `Checkout(${updateCartCount()} items)`;
                 });
             });
@@ -118,6 +121,7 @@ export function renderOrderList(){
         const productId = link.dataset.productId;
         const quantityValue = parseInt(document.querySelector(`.js-quantity-bar-${productId}`).value);
         setCartItemQuantity(productId,quantityValue);
+        renderCheckoutSummary();
         document.querySelector('.js-middle-section').innerHTML = `Checkout(${updateCartCount()} items)`;
         document.querySelector(`.js-cart-quantity-${productId}`).innerHTML= quantityValue;
         document.querySelector(`.js-save-quantity-link-${productId}`).classList.add('invisible');
