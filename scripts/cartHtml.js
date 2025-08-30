@@ -1,4 +1,6 @@
-import{cart} from '../data/cart.js';
+import{cart, removeFromCart} from '../data/cart.js';
+import { products } from '../data/products.js';
+import { formatCurrency } from './utils/money.js';
 
 let finalCartHtml = ``;
 //date and days
@@ -25,15 +27,16 @@ const future3  = new Date();
 future3.setDate(today.getDate()+3);
 
 cart.forEach(cartItem => {
-
+  const productId = cartItem.productId;
+  const matchingProduct = products.find(p => p.id === productId);
   const html = `
-    <div class="order">
+    <div class="order js-order-${matchingProduct.id}">
       <div class="date">Date: ${formatDate(today)}</div>
       <div class="order-details-grid">
-        <img class="item-image" src="${cartItem.image}">
+        <img class="item-image" src="${matchingProduct.image}">
         <div class="cart-item-details">
-          <div class="product-name">${cartItem.name}</div>
-          <div class="total-product-cost">$${(cartItem.priceCents / 100).toFixed(2)}</div>
+          <div class="product-name">${matchingProduct.name}</div>
+          <div class="total-product-cost">$${formatCurrency(matchingProduct.priceCents)}</div>
           <div class="order-options">
             <div>Quantity</div>
             <select class="quantity-selection">
@@ -42,7 +45,7 @@ cart.forEach(cartItem => {
               ).join('')}
             </select>
             <div><a href="">Save</a></div>
-            <div><a href="">Delete</a></div>
+            <div><span class = "js-delete-quantity-link" data-product-id="${cartItem.productId}">Delete</span></div>
           </div>
         </div>
 
@@ -136,3 +139,12 @@ function updateSummary() {
 }
 // First update call
 updateSummary();
+document.querySelectorAll('.js-delete-quantity-link')
+        .forEach(link => {
+            link.addEventListener('click',()=>{
+              const productId = link.dataset.productId;
+              removeFromCart(productId);
+              const orderContainer = document.querySelector(`.js-order-${productId}`);
+              orderContainer.remove();
+            });
+        });
