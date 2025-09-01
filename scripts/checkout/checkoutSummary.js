@@ -12,7 +12,6 @@ export function renderCheckoutSummary(){
         productPriceCents += product.priceCents * cartItem.quantity;
 
         const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
-        console.log(deliveryOption);
         shippingPriceCents += deliveryOption.priceCents;
     });
 
