@@ -10,7 +10,6 @@ describe('test suite: addToCart', ()=>{
             return JSON.stringify([{
                 productId : "a82c6bac-3067-4e68-a5ba-d827ac0be010",
                 quantity : 1,
-                shipping : 0,
                 deliveryOptionId: '1'
             }]);
         });

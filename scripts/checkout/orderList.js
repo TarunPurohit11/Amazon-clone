@@ -2,7 +2,6 @@ import{cart, removeFromCart, updateCartCount, setCartItemQuantity, updateDeliver
 import { products, getProduct } from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import{deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
-import dayjs from ' https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import { renderCheckoutSummary } from './checkoutSummary.js';
 import { renderCartHeader } from '../Header/cartHeader.js';
 import { deliveryDateString } from '../utils/date.js';
@@ -19,7 +18,7 @@ export function renderOrderList(){
       const dateString = deliveryDateString(deliveryOption.deliveryDays);
 
       finalCartHtml += `
-        <div class="order js-order-${matchingProduct.id}">
+        <div class="order js-order js-order-${matchingProduct.id}">
           <div class="date">Delivery date: ${dateString} </div>
           <div class="order-details-grid">
             <img class="item-image" src="${matchingProduct.image}">
@@ -28,13 +27,13 @@ export function renderOrderList(){
               <div class="total-product-cost">$${formatCurrency(matchingProduct.priceCents)}</div>
               <div class="order-options">
                 <div>Quantity: </div>
-                <span class = "js-cart-quantity-${matchingProduct.id}">${cartItem.quantity}</span>
+                <span class = "js-product-quantity js-cart-quantity-${matchingProduct.id}">${cartItem.quantity}</span>
                 <input class = "quantity-bar js-quantity-bar-${matchingProduct.id} invisible" type="number" value = "1">
                 <div>
                   <span class = "js-update-quantity-link js-update-quantity-link-${matchingProduct.id}" data-product-id=${matchingProduct.id}>Update</span>
                   <span class = "js-save-quantity-link invisible js-save-quantity-link-${matchingProduct.id}" data-product-id=${matchingProduct.id}>Save</span>
                   </div>
-                <div><span class = "js-delete-quantity-link" data-product-id="${cartItem.productId}">Delete</span></div>
+                <div><span class = "js-delete-quantity-link js-delete-link-${matchingProduct.id}" data-product-id="${cartItem.productId}">Delete</span></div>
               </div>
             </div>
 

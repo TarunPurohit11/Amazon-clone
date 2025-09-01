@@ -13,7 +13,7 @@ export function renderCheckoutSummary(){
 
         const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
         shippingPriceCents += deliveryOption.priceCents;
-    });
+    }); 
 
     const totalBeforeTaxCents = productPriceCents+shippingPriceCents;
     const taxCents = totalBeforeTaxCents * 0.1;
@@ -21,10 +21,10 @@ export function renderCheckoutSummary(){
     const totalCents = totalBeforeTaxCents + taxCents; 
 
     const html = `
-        <div class="order-checkout">
+        <div class="order-checkout js-order-checkout">
         <div class="order-summary-text">Order Summary</div>
         <div class="payment-summary">
-            <div class="item-text">Items(${cart.length}):</div>
+            <div class="item-text js-item-text">Items(${cart.length}):</div>
             <div class="items-cost">$${formatCurrency(productPriceCents)}</div>
         </div>
         <div class="payment-summary">
