@@ -1,4 +1,4 @@
-import { updateCartCount } from "../../data/cart.js";
+import { cart } from "../../data/cart.js";
 
 
 export function renderCartHeader(){
@@ -14,5 +14,5 @@ export function renderCartHeader(){
                         <img class="lock-icon" src="images/icons/checkout-lock-icon.png">
                     </div>
                 </div>`;
-document.querySelector('.js-middle-section').innerHTML = `Checkout(${updateCartCount()} items)`
+document.querySelector('.js-middle-section').innerHTML = `Checkout(${cart.updateCartCount()} items)`
 }

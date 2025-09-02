@@ -1,5 +1,5 @@
-import{cart, removeFromCart, updateCartCount, setCartItemQuantity, updateDeliveryOption} from '../../data/cart.js';
-import { products, getProduct } from '../../data/products.js';
+import{cart} from '../../data/cart.js';
+import { getProduct } from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import{deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 import { renderCheckoutSummary } from './checkoutSummary.js';
@@ -9,7 +9,7 @@ export function renderOrderList(){
     let finalCartHtml = ``;
 
 
-    cart.forEach(cartItem => {
+    cart.cartItem.forEach(cartItem => {
       const productId = cartItem.productId;
       const matchingProduct = getProduct(productId);
       const deliveryOptionId = cartItem.deliveryOptionId;
@@ -24,7 +24,7 @@ export function renderOrderList(){
             <img class="item-image" src="${matchingProduct.image}">
             <div class="cart-item-details">
               <div class="product-name">${matchingProduct.name}</div>
-              <div class="total-product-cost">$${formatCurrency(matchingProduct.priceCents)}</div>
+              <div class="total-product-cost">$${matchingProduct.getPrice()}</div>
               <div class="order-options">
                 <div>Quantity: </div>
                 <span class = "js-product-quantity js-cart-quantity-${matchingProduct.id}">${cartItem.quantity}</span>
@@ -52,12 +52,11 @@ export function renderOrderList(){
       deliveryOptions.forEach((deliveryOption) => {
 
         const dateString = deliveryDateString(deliveryOption.deliveryDays);
-        console.log("delivery option: "+dateString);
         const priceString = deliveryOption.priceCents === 0 ? 'FREE' : `${formatCurrency(deliveryOption.priceCents)}`;
 
         const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
         html +=
-                `<div class = "delivery-option js-delivery-option js-delivery-option-${matchingProduct.id}-${deliveryOption.id}" 
+                `<div class = "delivery-option js-delivery-option" 
                   data-product-id=${matchingProduct.id}
                   data-delivery-option-id="${deliveryOption.id}">
                   <input type = "radio" ${isChecked ? 'checked': ''} class = "delivery-option-input js-delivery-option-input-${matchingProduct.id}-${deliveryOption.id}" name = "delivery-option-${matchingProduct.id}"/>
@@ -82,7 +81,7 @@ export function renderOrderList(){
           .forEach(element => {
               element.addEventListener('click', ()=> {
                 const {productId,deliveryOptionId} = element.dataset;
-                updateDeliveryOption(productId,deliveryOptionId);
+                cart.updateDeliveryOption(productId,deliveryOptionId);
                 renderOrderList();
                 renderCheckoutSummary();
               });
@@ -92,7 +91,7 @@ export function renderOrderList(){
             .forEach(link => {
                 link.addEventListener('click',()=>{
                   const productId = link.dataset.productId;
-                  removeFromCart(productId);
+                  cart.removeFromCart(productId);
                   const orderContainer = document.querySelector(`.js-order-${productId}`);
                   orderContainer.remove();
                   renderCheckoutSummary();
@@ -114,10 +113,10 @@ export function renderOrderList(){
       link.addEventListener('click',()=>{
         const productId = link.dataset.productId;
         const quantityValue = parseInt(document.querySelector(`.js-quantity-bar-${productId}`).value);
-        setCartItemQuantity(productId,quantityValue);
+        cart.setCartItemQuantity(productId,quantityValue);
         renderCartHeader();
         renderCheckoutSummary();
-        document.querySelector('.js-middle-section').innerHTML = `Checkout(${updateCartCount()} items)`;
+        document.querySelector('.js-middle-section').innerHTML = `Checkout(${cart.updateCartCount()} items)`;
         document.querySelector(`.js-cart-quantity-${productId}`).innerHTML= quantityValue;
         document.querySelector(`.js-save-quantity-link-${productId}`).classList.add('invisible');
         document.querySelector(`.js-quantity-bar-${productId}`).classList.add('invisible');
