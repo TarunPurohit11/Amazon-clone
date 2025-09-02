@@ -7,7 +7,7 @@ export function renderCheckoutSummary(){
 
     let productPriceCents = 0;
     let shippingPriceCents = 0;
-    cart.forEach(cartItem => {
+    cart.cartItem.forEach(cartItem => {
         const product = getProduct(cartItem.productId);
         productPriceCents += product.priceCents * cartItem.quantity;
 
@@ -24,7 +24,7 @@ export function renderCheckoutSummary(){
         <div class="order-checkout js-order-checkout">
         <div class="order-summary-text">Order Summary</div>
         <div class="payment-summary">
-            <div class="item-text js-item-text">Items(${cart.length}):</div>
+            <div class="item-text js-item-text">Items(${cart.cartItem.length}):</div>
             <div class="items-cost">$${formatCurrency(productPriceCents)}</div>
         </div>
         <div class="payment-summary">
