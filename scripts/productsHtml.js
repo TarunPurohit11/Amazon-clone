@@ -28,6 +28,7 @@ products.forEach(product => {
                             <option value = "10">10</option>
                         </select>
                     </div>
+                    ${product.extraInfoHtml()}
                     <div class = "added hidden">
                         <img class="ok-icon" src = "images/icons/checkmark.png"> Added
                     </div >

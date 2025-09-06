@@ -5,7 +5,7 @@ import { formatCurrency } from "../utils/money.js";
 
 export function renderCheckoutSummary(){
 
-    let productPriceCents = 0;
+    let productPriceCents = 0;  
     let shippingPriceCents = 0;
     cart.cartItem.forEach(cartItem => {
         const product = getProduct(cartItem.productId);
