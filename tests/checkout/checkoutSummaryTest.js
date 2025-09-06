@@ -1,4 +1,4 @@
-import { loadFromStorage } from "../../data/cart.js";
+import { cart } from "../../data/cart.js";
 import { renderCheckoutSummary } from "../../scripts/checkout/checkoutSummary.js";
 
 describe('test suite: renderCheckoutSummary', () => {
@@ -23,7 +23,7 @@ describe('test suite: renderCheckoutSummary', () => {
                 deliveryOptionId : '2'
             }]);
         });
-        loadFromStorage();
+        cart.loadFromStorage();
 
         renderCheckoutSummary();
 

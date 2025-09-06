@@ -1,6 +1,5 @@
-import {updateCartCount, addToCart} from '../data/cart.js';
+import {cart} from '../data/cart.js';
 import { products } from '../data/products.js';
-import { formatCurrency } from './utils/money.js';
 
 let finalHtml = ``;
 products.forEach(product => {
@@ -11,10 +10,10 @@ products.forEach(product => {
                        ${product.name}
                     </div>
                     <div class = "reviews">
-                        <img class = "reviews-image"src = "images/ratings/rating-${(product.rating.stars)*10}.png">
+                        <img class = "reviews-image"src = "${product.getReview()}">
                         <div class="review-ratings-count">${product.rating.count}</div>
                     </div>
-                    <div class="price">$${formatCurrency(product.priceCents)}</div>
+                    <div class="price">$${product.getPrice()}</div>
                     <div class = "quantity">
                         <select class = "drop-down">
                             <option value = "1" selected>1</option>
@@ -29,6 +28,7 @@ products.forEach(product => {
                             <option value = "10">10</option>
                         </select>
                     </div>
+                    ${product.extraInfoHtml()}
                     <div class = "added hidden">
                         <img class="ok-icon" src = "images/icons/checkmark.png"> Added
                     </div >
@@ -40,8 +40,8 @@ products.forEach(product => {
 document.querySelector('.products-grid-container').innerHTML = finalHtml;
 
 
-if(updateCartCount()){
-    document.querySelector('.cart-count').innerHTML = updateCartCount();
+if(cart.updateCartCount()){
+    document.querySelector('.cart-count').innerHTML = cart.updateCartCount();
 }
 
 const addButtons = document.querySelectorAll('.add-to-cart-button');
@@ -56,12 +56,12 @@ addButtons.forEach((btn,index) => {
 
         added.classList.add("visible");
         const productId = (btn.dataset.id);
-        addToCart(productId,productQuantity);
+        cart.addToCart(productId,productQuantity);
         
         setTimeout(()=>{
             added.classList.remove("visible");
         },2000);
-        document.querySelector('.cart-count').innerHTML = updateCartCount();
+        document.querySelector('.cart-count').innerHTML = cart.updateCartCount();
     });
 });
 
