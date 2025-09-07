@@ -1,8 +1,14 @@
 import { cart } from "../../data/cart.js";
 import { renderCheckoutSummary } from "../../scripts/checkout/checkoutSummary.js";
+import { loadProducts } from "../../data/products.js";
+
 
 describe('test suite: renderCheckoutSummary', () => {
-
+    beforeAll((done) => {
+        loadProducts(() => {
+            done();
+        });
+    });
 
     it('displays the checkout summary', () => {
 
