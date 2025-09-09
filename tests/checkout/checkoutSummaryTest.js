@@ -1,11 +1,11 @@
 import { cart } from "../../data/cart.js";
 import { renderCheckoutSummary } from "../../scripts/checkout/checkoutSummary.js";
-import { loadProducts } from "../../data/products.js";
+import { loadProductsfetch } from "../../data/products.js";
 
 
 describe('test suite: renderCheckoutSummary', () => {
     beforeAll((done) => {
-        loadProducts(() => {
+        loadProductsfetch().then(() => {
             done();
         });
     });

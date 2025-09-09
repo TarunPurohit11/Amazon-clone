@@ -1,6 +1,6 @@
 import { cart } from '../../data/cart.js';
 import { renderOrderList } from '../../scripts/checkout/orderList.js';
-import { loadProducts } from '../../data/products.js';
+import {  loadProductsfetch } from '../../data/products.js';
 
 describe('test Suite: renderOrderList', () => {
     
@@ -8,7 +8,7 @@ describe('test Suite: renderOrderList', () => {
     const productId2="15b6fc6f-327a-4ec4-896f-486349e85a3d";
 
     beforeAll((done) => {
-        loadProducts(() => {
+        loadProductsfetch().then(() => {
             done();
         });
     });
