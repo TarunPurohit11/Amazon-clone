@@ -5,17 +5,31 @@ import { loadProductsfetch } from "../data/products.js";
 import { loadCart } from "../data/cart.js";
 
 
-Promise.all([
-    loadProductsfetch(),
-    new Promise( (resolve) =>{
+async function loadPage(){
+    await loadProductsfetch();
+    
+    await new Promise( (resolve) =>{
         loadCart(() => {
             resolve();
-        })
-    })
-]).then((values) => {
-    console.log(values);
+        });
+    });
     renderCartHeader();
     renderOrderList();
     renderCheckoutSummary();
-});
+}
+
+loadPage();
+
+
+// Promise.all([
+//     loadProductsfetch(),
+//     new Promise( (resolve) =>{
+//         loadCart(() => {
+//             resolve();
+//         })
+//     })
+// ]).then((values) => {
+//     console.log(values);
+//     
+// });
 
