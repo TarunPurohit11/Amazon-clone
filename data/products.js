@@ -48,14 +48,13 @@ export function loadProductsfetch(){
     console.log(response);
     return response.json();
   }).then((productsData) => {
-    console.log(productsData);
+    
     products = productsData.map((productDetails) => {
       if(productDetails.type === 'clothing'){
         return new Clothing(productDetails);
       }  
       return new Product(productDetails);
     });
-    console.log('fetch products');
   }).catch((error) =>{
     console.log('Unexpected error');
   });
