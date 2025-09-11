@@ -1,27 +1,27 @@
-main{
+body{
     margin-top: 100px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 180px;
+    margin-right: 180px;
 }
 .order-container{
     display: grid;
+    padding: 30px;
 }
 .order-grid{
     display: grid;
 }
 .order-details{
     display: grid;
-    border:1px solid black;
-    height: 100px;
+    grid-template-columns: 1fr 1fr ;
+    gap : 100px;
+    padding: 20px 25px;
+    background-color: #f4f4f4;
+    border:1px solid #ccc;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     align-items: center;
 }
-.product-item-detail{
-    display: grid;
-    grid-template-columns: 300px 300px ;
-    padding-left: 50px;
-    padding-right: 50px ;
-    gap:400px
-}
+
 .left-section{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -32,10 +32,13 @@ main{
 .order-products-list{
     display: grid;
     border: 1px solid #ccc;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .product{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    padding: 50px;
+    grid-template-columns: 1fr 2fr 1fr;
 }
 .your-orders{
     font-size: 25px;
