@@ -84,6 +84,7 @@ main{
     position: relative;
     display: flex;
     padding: 6px;
+    text-decoration: none;
 }
 .cart-icon{
     height: 35px;
@@ -99,6 +100,7 @@ main{
 .cart-text{
     margin-top:15px;
     font-weight: 600;
+    color: white;
 }
 
 .order-grid{

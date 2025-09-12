@@ -16,3 +16,9 @@ function isWeekend(date){
     return dayString === 'Saturday' || dayString === 'Sunday';
 }
 
+export function dateConverter(dateString){
+    console.log(dateString);
+    console.log( dayjs(dateString).format('MMMM D'))
+    return dayjs(dateString).format('MMMM D');
+}
+

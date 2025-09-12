@@ -63,6 +63,7 @@ export function renderCheckoutSummary(){
                     })
                 });
             const order = await response.json();
+            console.log(order);
             addOrder(order);
             }catch(error){
                 console.log('Unexpected error');

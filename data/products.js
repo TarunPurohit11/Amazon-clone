@@ -749,6 +749,8 @@ export function loadProducts(func){
 // });
 
 export function getProduct(productId){
+  console.log(products);
   const matchingProduct = products.find(p => p.id === productId);
+  console.log(matchingProduct);
   return matchingProduct;
 }
