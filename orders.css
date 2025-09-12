@@ -2,6 +2,7 @@ body{
     margin-top: 100px;
     margin-left: 180px;
     margin-right: 180px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .order-container{
     display: grid;
@@ -11,43 +12,42 @@ body{
     display: grid;
 }
 .order-details{
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    gap : 100px;
+    display: flex;
+    justify-content: space-between;
     padding: 20px 25px;
-    background-color: #f4f4f4;
-    border:1px solid #ccc;
+    background-color: rgb(240, 242, 242);
+    border: 1px solid rgb(213, 217, 217);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     align-items: center;
 }
 
 .left-section{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-shrink: 0;
 }
 .right-section{
-   justify-content: end; 
+    flex-shrink: 1;
 }
 .order-products-list{
     display: grid;
     border: 1px solid #ccc;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    padding: 40px 25px;
+    row-gap: 60px;
+    column-gap : 45px;
+    grid-template-columns: 110px 1fr 220px;
 }
-.product{
-    display: grid;
-    padding: 50px;
-    grid-template-columns: 1fr 2fr 1fr;
-}
+
 .your-orders{
     font-size: 25px;
     font-weight: 700;
     margin-bottom: 30px
 }
-.product-image{
-    height: 200px;
-    width: 200px;
+.product-image-container, .product-image{
+    max-width: 110px;
+    max-height: 110px;
 }
 .buy-again-icon{
    height: 20px;
@@ -55,4 +55,44 @@ body{
 }
 .order{
     margin-bottom: 50px;
+}
+.product-name{
+    font-size: 18px;
+    font-weight: 550;
+    margin-bottom: 5px;
+}
+.arriving-date, .product-quantity{
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+.but-it-again-class{
+    color: rgb(33, 33, 33);
+    display: flex;
+    height: 36px;
+    align-items: center;
+    font-size: 15px;
+    border-radius: 7px;
+    background-color: rgb(255, 216, 20);
+    border: 1px solid rgb(252, 210, 0);
+    padding-left: 10px;
+    padding-right: 10px;
+    
+}
+.buy-again-icon{
+    margin-right: 15px;
+}
+.track-package-button{
+    width: 100%;
+    font-size: 15px;
+    padding: 7px;
+    border-radius: 7px;
+    background: white;
+    border: 1px solid #D5D9D9;
+}
+
+.order-placed-date-container, .order-total{
+    margin-right: 50px;
+}
+.order-placed-text, .total-text, .order-id-text{
+    font-weight: 700;
 }
