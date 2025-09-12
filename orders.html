@@ -5,17 +5,40 @@
         <link rel="stylesheet" href="orders.css">
     </head>
     <body>
-        <header>
+        <header class="header-section">
+            <div class = "left-section">
+                <img class="amazon-logo-white" src ="images/amazon-logo-white.png">
+            </div>
+            <div class = "mid-section">
+                <input class = "search-box" placeholder="search">
+                <button class="search-button">
+                    <img class="search-icon" src="images/icons/search-icon.png">
+                </button>
+            </div>
+            <div class = "right-section">
+                <div class = "return-and-order">
+                    <div class="returns-text">
+                        Returns
+                    </div>
+                    <div class = "orders-text">
+                        & Orders
+                    </div>
+                </div>
+                <div class="cart-section">
+                    <img class = "cart-icon" src = "images/icons/cart-icon.png">
+                    <div class="cart-count">0</div>
+                    <div class="cart-text">Cart</div>
 
+                </div>
+            </div>
         </header>
         <main>
-            <div class = "order-container">
                 <div class = "your-orders">Your Orders</div>
                 <div class = "order-grid">
                     <div class="order">
                         <div class = "order-details">
                             
-                                <div class = "left-section">
+                                <div class = "order-details-left-section">
                                     <div class="order-placed-date-container">
                                         <div class = "order-placed-text">Order Placed:</div>
                                         <div class = "order-placed-date">September 10</div>
@@ -25,7 +48,7 @@
                                         <div>$23.05</div>
                                     </div>
                                 </div>
-                                <div class = "right-section">
+                                <div class = "order-details-right-section">
                                     <div class="order-id-text">Order Id:</div>
                                     <div class="order-id">b115c77b-36e6-2358-86a4-2c61f8e7ae85</div>
                                 </div>
@@ -79,7 +102,7 @@
                     <div class="order">
                         <div class = "order-details">
                             
-                                <div class = "left-section">
+                                <div class = "order-details-left-section">
                                     <div class="order-placed-date-container">
                                         <div class = "order-placed-text">Order Placed:</div>
                                         <div class = "order-placed-date">September 10</div>
@@ -89,7 +112,7 @@
                                         <div>$23.05</div>
                                     </div>
                                 </div>
-                                <div class = "right-section">
+                                <div class = "order-details-right-section">
                                     <div class="order-id-text">Order Id:</div>
                                     <div class="order-id">b115c77b-36e6-2358-86a4-2c61f8e7ae85</div>
                                 </div>
@@ -108,7 +131,7 @@
                                     <div class="product-quantity">Quantity: 1</div>
                                     <button class="but-it-again-class">
                                         <img class="buy-again-icon" src="images/icons/buy-again.png">
-                                        Buy it again
+                                        <div>Buy it again</div>
                                     </button>
                                 </div>
                                 <div>
@@ -141,7 +164,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </main>
     </body>
 </html>
