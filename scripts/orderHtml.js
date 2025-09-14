@@ -3,7 +3,7 @@ import { formatCurrency } from "./utils/money.js";
 import { dateConverter } from "./utils/date.js";
 import { getProduct, loadProductsfetch } from "../data/products.js";
 import { cart } from "../data/cart.js";
-console.log(orders);
+
 load();
 async function load(){
     await loadProductsfetch();
@@ -34,9 +34,6 @@ async function load(){
             `;
         order.products.forEach((orderProduct) => {
             const product = getProduct(orderProduct.productId);
-            console.log(orderProduct.productId);
-            console.log(product);
-            console.log(typeof(orderProduct.estimatedDeliveryTime));
             html +=  `
                 
                     <div class = 'product-image-container'>
@@ -67,6 +64,13 @@ async function load(){
             
         });
         document.querySelector('.js-order-grid').innerHTML = html;
+        document.querySelectorAll('.but-it-again-class').forEach(button => {
+            button.addEventListener('click',() => {
+            window.open('home-page.html','_self');
+            });
+        });
 }
 
 document.querySelector('.js-cart-count').innerHTML = cart.updateCartCount();
+
+

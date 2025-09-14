@@ -17,8 +17,6 @@ function isWeekend(date){
 }
 
 export function dateConverter(dateString){
-    console.log(dateString);
-    console.log( dayjs(dateString).format('MMMM D'))
     return dayjs(dateString).format('MMMM D');
 }
 

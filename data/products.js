@@ -45,7 +45,6 @@ export let products = [];
 
 export function loadProductsfetch(){
   const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
-    console.log(response);
     return response.json();
   }).then((productsData) => {
     
@@ -749,8 +748,6 @@ export function loadProducts(func){
 // });
 
 export function getProduct(productId){
-  console.log(products);
   const matchingProduct = products.find(p => p.id === productId);
-  console.log(matchingProduct);
   return matchingProduct;
 }
