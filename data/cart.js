@@ -84,6 +84,12 @@ class Cart{
 
     this.saveToStorage();
   }
+
+  emptyCart(){
+    const newCart = [];
+    this.cartItem = newCart;
+    this.saveToStorage();
+  }
 }
 
 export const cart = new Cart();
@@ -91,7 +97,6 @@ export const cart = new Cart();
 export function loadCart(func){
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load',() => {
-    console.log(xhr.response);
     func();
   })
   

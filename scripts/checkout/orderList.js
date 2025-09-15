@@ -7,8 +7,15 @@ import { renderCartHeader } from '../Header/cartHeader.js';
 import { deliveryDateString } from '../utils/date.js';
 export function renderOrderList(){
     let finalCartHtml = ``;
-
-
+    finalCartHtml += `<div class="order-review">Review your order</div>`;
+    if(!cart.cartItem.length){
+      finalCartHtml += `<div>Your cart is empty.</div>
+      <button class="view-products-button js-view-products-button">View products</button>`;  
+      document.querySelector('.order-list').innerHTML = finalCartHtml;
+      document.querySelector('.js-view-products-button').addEventListener('click',() => {
+        window.open('home-page.html','_self');
+      });    
+    }
     cart.cartItem.forEach(cartItem => {
       const productId = cartItem.productId;
       const matchingProduct = getProduct(productId);
@@ -16,7 +23,7 @@ export function renderOrderList(){
       const deliveryOption = getDeliveryOption(deliveryOptionId);
 
       const dateString = deliveryDateString(deliveryOption.deliveryDays);
-
+      
       finalCartHtml += `
         <div class="order js-order js-order-${matchingProduct.id}">
           <div class="date">Delivery date: ${dateString} </div>
@@ -43,6 +50,7 @@ export function renderOrderList(){
             </div>
           </div>
         </div>`;
+
     }) 
 
     function deliveryOptionHTML(matchingProduct,cartItem){
@@ -75,7 +83,7 @@ export function renderOrderList(){
 
     // 🔹 Put HTML first
     document.querySelector('.order-list').innerHTML = finalCartHtml;
-
+    
     // 🔹 Then add event listeners
     document.querySelectorAll('.js-delivery-option')
           .forEach(element => {
@@ -95,6 +103,7 @@ export function renderOrderList(){
                   const orderContainer = document.querySelector(`.js-order-${productId}`);
                   orderContainer.remove();
                   renderCheckoutSummary();
+                  renderOrderList();
                   renderCartHeader();
                 });
             });

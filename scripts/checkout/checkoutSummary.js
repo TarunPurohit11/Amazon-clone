@@ -65,10 +65,11 @@ export function renderCheckoutSummary(){
             const order = await response.json();
             console.log(order);
             addOrder(order);
+            
             }catch(error){
                 console.log('Unexpected error');
             }
-
+            cart.emptyCart();
             window.location.href = 'orders.html';
         });
         

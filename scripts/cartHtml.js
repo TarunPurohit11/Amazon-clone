@@ -5,7 +5,7 @@ import { loadProductsfetch } from "../data/products.js";
 import { loadCart } from "../data/cart.js";
 
 
-async function loadPage(){
+export async function loadPage(){
     try{
         await loadProductsfetch();
     
